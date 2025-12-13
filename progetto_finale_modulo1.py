@@ -49,10 +49,30 @@ df=pd.DataFrame(pd.read_csv("vendite.csv"))
 
 df["incasso"]=df["quantita"]*df["prezzo_unitario"]
 
-print("\nIncasso totale\n",df["incasso"].sum())
+#print("\nIncasso totale\n",df["incasso"].sum())
 
-print("\nMedia incassi per",df.groupby("Negozio")["incasso"].mean())
+#print("\nMedia incassi per",df.groupby("Negozio")["incasso"].mean())
 
-print(f"\nProdotti più venduti\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["prodotto"]}\n\ncon\n\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["quantita"]}\n\nprodotti venduti\n")
+#print(f"\nProdotti più venduti\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["prodotto"]}\n\ncon\n\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["quantita"]}\n\nprodotti venduti\n")
 
-print("\nMedia incassi per",df.groupby("prodotto")["incasso"].mean())
+#print("\nMedia incassi per",df.groupby("prodotto")["incasso"].mean())
+
+# parte 4
+
+quantita=df["quantita"].to_numpy()
+print(f"\nQuantità media di prodotti: {quantita.mean()}\nMin,max: {quantita.min()},{quantita.max()}\nDeviazione standard: {quantita.std()}")
+
+n=0
+for x in quantita:
+    if x>quantita.mean():
+        n+=1
+oltre_la_media=10*n/3
+print("oltre la media:",oltre_la_media,"%")
+
+prezzo=df["prezzo_unitario"].to_numpy()
+
+totale=np.column_stack((quantita,prezzo))
+print("quantità   prezzo\n",totale)
+
+incasso=np.multiply(quantita,prezzo)
+print("Incasso totale\n",incasso)
