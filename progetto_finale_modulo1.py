@@ -43,4 +43,16 @@ with open("vendite.csv","w") as s:
 # parte 2
 
 df=pd.DataFrame(pd.read_csv("vendite.csv"))
-print(f"Primo giorno:\n{df.head()}\nforma:{df.shape}\ninfo:{df.info()}")
+#print(f"Primo giorno:\n{df.head()}\nforma:{df.shape}\ninfo:{df.info()}")
+
+# parte 3
+
+df["incasso"]=df["quantita"]*df["prezzo_unitario"]
+
+print("\nIncasso totale\n",df["incasso"].sum())
+
+print("\nMedia incassi per",df.groupby("Negozio")["incasso"].mean())
+
+print(f"\nProdotti più venduti\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["prodotto"]}\n\ncon\n\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["quantita"]}\n\nprodotti venduti\n")
+
+print("\nMedia incassi per",df.groupby("prodotto")["incasso"].mean())
