@@ -60,22 +60,22 @@ df["incasso"]=df["quantita"]*df["prezzo_unitario"]
 # parte 4
 
 quantita=df["quantita"].to_numpy()
-print(f"\nQuantità media di prodotti: {quantita.mean()}\nMin,max: {quantita.min()},{quantita.max()}\nDeviazione standard: {quantita.std()}")
+#print(f"\nQuantità media di prodotti: {quantita.mean()}\nMin,max: {quantita.min()},{quantita.max()}\nDeviazione standard: {quantita.std()}")
 
 n=0
 for x in quantita:
     if x>quantita.mean():
         n+=1
 oltre_la_media=10*n/3
-print("oltre la media:",oltre_la_media,"%")
+#print("oltre la media:",oltre_la_media,"%")
 
 prezzo=df["prezzo_unitario"].to_numpy()
 
 totale=np.column_stack((quantita,prezzo))
-print("quantità   prezzo\n",totale)
+#print("\nquantità   prezzo\n",totale)
 
 incasso=np.multiply(quantita,prezzo)
-print("Incasso totale\n",incasso)
+#print("\nIncasso totale\n",incasso)
 
 # parte 5
 
@@ -98,4 +98,23 @@ plt.xticks(rotation=45)
 plt.ylabel("INCASSI")
 plt.title("INCASSI TOTALI NEL TEMPO")
 plt.tight_layout()
-plt.show()
+#plt.show()
+
+# parte 6
+
+mappatura={
+    'smartphone': 'Informatica',
+    'laptop': 'Informatica',
+    'TV': 'Elettrodomestici',
+    'radio': 'Elettrodomestici',
+    'stereo': 'uso personale',
+    'auricolari': 'uso personale'
+}
+
+df["categoria"]=df["prodotto"].map(mappatura)
+
+print("\nincassi dei prodotti raggruppati per",df.groupby("categoria")["incasso"].sum())
+
+print("\nmedia prodotti raggruppati per",df.groupby("categoria")["quantita"].mean())
+
+df.to_csv("vendite_analizzate.csv",index=False)

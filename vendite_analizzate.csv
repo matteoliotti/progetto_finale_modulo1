@@ -1,0 +1,31 @@
+Data,Negozio,prodotto,quantita,prezzo_unitario,incasso,categoria
+2024-03-15,Roma,smartphone,11,399.99,4399.89,Informatica
+2024-03-15,Milano,laptop,15,599.99,8999.85,Informatica
+2024-03-15,Napoli,TV,13,299.99,3899.87,Elettrodomestici
+2024-03-15,Venezia,stereo,11,29.99,329.89,uso personale
+2024-03-15,Torino,auricolari,14,9.99,139.86,uso personale
+2024-03-16,Roma,radio,16,19.99,319.84,Elettrodomestici
+2024-03-16,Milano,smartphone,10,399.99,3999.9,Informatica
+2024-03-16,Napoli,laptop,17,599.99,10199.83,Informatica
+2024-03-16,Venezia,TV,17,299.99,5099.83,Elettrodomestici
+2024-03-16,Torino,stereo,12,29.99,359.88,uso personale
+2024-03-17,Roma,auricolari,14,9.99,139.86,uso personale
+2024-03-17,Milano,radio,18,19.99,359.82,Elettrodomestici
+2024-03-17,Napoli,smartphone,15,399.99,5999.85,Informatica
+2024-03-17,Venezia,laptop,19,599.99,11399.81,Informatica
+2024-03-17,Torino,TV,10,299.99,2999.9,Elettrodomestici
+2024-03-18,Roma,stereo,10,29.99,299.9,uso personale
+2024-03-18,Milano,auricolari,11,9.99,109.89,uso personale
+2024-03-18,Napoli,radio,10,19.99,199.89999999999998,Elettrodomestici
+2024-03-18,Venezia,smartphone,18,399.99,7199.82,Informatica
+2024-03-18,Torino,laptop,12,599.99,7199.88,Informatica
+2024-03-19,Roma,TV,15,299.99,4499.85,Elettrodomestici
+2024-03-19,Milano,stereo,16,29.99,479.84,uso personale
+2024-03-19,Napoli,auricolari,10,9.99,99.9,uso personale
+2024-03-19,Venezia,radio,13,19.99,259.87,Elettrodomestici
+2024-03-19,Torino,smartphone,20,399.99,7999.8,Informatica
+2024-03-20,Roma,laptop,10,599.99,5999.9,Informatica
+2024-03-20,Milano,TV,11,299.99,3299.8900000000003,Elettrodomestici
+2024-03-20,Napoli,stereo,16,29.99,479.84,uso personale
+2024-03-20,Venezia,auricolari,14,9.99,139.86,uso personale
+2024-03-20,Torino,radio,10,19.99,199.89999999999998,Elettrodomestici
