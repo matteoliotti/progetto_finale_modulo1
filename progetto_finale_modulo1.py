@@ -76,3 +76,26 @@ print("quantità   prezzo\n",totale)
 
 incasso=np.multiply(quantita,prezzo)
 print("Incasso totale\n",incasso)
+
+# parte 5
+
+base=plt.figure(figsize=(10,6))
+
+base.add_subplot(222)
+plt.bar(df.groupby("Negozio")["incasso"].sum().reset_index()["Negozio"],df.groupby("Negozio")["incasso"].sum(),color=["black","cyan","r","yellow","orange"],width=0.5)
+plt.xlabel("SEDI")
+plt.title("INCASSI TOTALI DEI NEGOZI")
+plt.tight_layout()
+
+base.add_subplot(212)
+plt.pie(df.groupby("prodotto")["incasso"].sum(),labels=df.groupby("prodotto")["incasso"].sum().reset_index()["prodotto"],autopct="%1.0f%%")
+plt.title("PERCENTUALE INCASSI DEI PRODOTTI")
+
+base.add_subplot(221)
+plt.plot(df.groupby("Data")["incasso"].sum().reset_index()["Data"],df.groupby("Data")["incasso"].sum(),marker="*",color="g")
+plt.xlabel("GIORNI")
+plt.xticks(rotation=45)
+plt.ylabel("INCASSI")
+plt.title("INCASSI TOTALI NEL TEMPO")
+plt.tight_layout()
+plt.show()
