@@ -43,39 +43,39 @@ with open("vendite.csv","w") as s:
 # parte 2
 
 df=pd.DataFrame(pd.read_csv("vendite.csv"))
-#print(f"Primo giorno:\n{df.head()}\nforma:{df.shape}\ninfo:{df.info()}")
+print(f"Primo giorno:\n{df.head()}\nforma:{df.shape}\ninfo:{df.info()}")
 
 # parte 3
 
 df["incasso"]=df["quantita"]*df["prezzo_unitario"]
 
-#print("\nIncasso totale\n",df["incasso"].sum())
+print("\nIncasso totale\n",df["incasso"].sum())
 
-#print("\nMedia incassi per",df.groupby("Negozio")["incasso"].mean())
+print("\nMedia incassi per",df.groupby("Negozio")["incasso"].mean())
 
-#print(f"\nProdotti più venduti\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["prodotto"]}\n\ncon\n\n{df.sort_values("quantita",ascending=False).head(3).reset_index()["quantita"]}\n\nprodotti venduti\n")
+print(f"\nProdotti ordinati per quantità vendute\n{df.groupby("prodotto")["quantita"].sum().reset_index()}")
 
-#print("\nMedia incassi per",df.groupby("prodotto")["incasso"].mean())
+print("\nMedia incassi per",df.groupby("prodotto")["incasso"].mean())
 
 # parte 4
 
 quantita=df["quantita"].to_numpy()
-#print(f"\nQuantità media di prodotti: {quantita.mean()}\nMin,max: {quantita.min()},{quantita.max()}\nDeviazione standard: {quantita.std()}")
+print(f"\nQuantità media di prodotti: {quantita.mean()}\nMin,max: {quantita.min()},{quantita.max()}\nDeviazione standard: {quantita.std()}")
 
 n=0
 for x in quantita:
     if x>quantita.mean():
         n+=1
 oltre_la_media=10*n/3
-#print("oltre la media:",oltre_la_media,"%")
+print("oltre la media:",oltre_la_media,"%")
 
 prezzo=df["prezzo_unitario"].to_numpy()
 
 totale=np.column_stack((quantita,prezzo))
-#print("\nquantità   prezzo\n",totale)
+print("\nquantità   prezzo\n",totale)
 
 incasso=np.multiply(quantita,prezzo)
-#print("\nIncasso totale\n",incasso)
+print("\nIncassi totali\n",incasso)
 
 # parte 5
 
@@ -98,7 +98,7 @@ plt.xticks(rotation=45)
 plt.ylabel("INCASSI")
 plt.title("INCASSI TOTALI NEL TEMPO")
 plt.tight_layout()
-#plt.show()
+plt.show()
 
 # parte 6
 
@@ -115,6 +115,32 @@ df["categoria"]=df["prodotto"].map(mappatura)
 
 print("\nincassi dei prodotti raggruppati per",df.groupby("categoria")["incasso"].sum())
 
-print("\nmedia prodotti raggruppati per",df.groupby("categoria")["quantita"].mean())
+print("\nquantità media di prodotti venduti raggruppati per",df.groupby("categoria")["quantita"].mean())
 
 df.to_csv("vendite_analizzate.csv",index=False)
+
+# parte 7
+
+base2=plt.figure(figsize=(10,6))
+
+base2.add_subplot(211)
+plt.bar(df.groupby("categoria")["incasso"].sum().reset_index()["categoria"],df.groupby("categoria")["incasso"].mean(),width=0.5,color=["black","g","b"])
+plt.ylabel("INCASSO MEDIO")
+plt.title("INCASSI MEDI PER OGNI CATEGORIA")
+plt.tight_layout()
+
+base2.add_subplot(212)
+plt.plot(df.groupby("categoria")["quantita"].sum().reset_index()["categoria"],df.groupby("categoria")["quantita"].mean(),marker="o",color="gray")
+plt.xlabel("CATEGORIE")
+plt.ylabel("QUANTITA MEDIE")
+plt.title("QUANTITA MEDIE PER CATEGORIA")
+plt.tight_layout()
+plt.show()
+
+def top_n_prodotti(n=int):
+    if n>6:
+        n=6
+    df.sort_values("incasso",ascending=False)
+    print(f"\ni {n} prodotti più venduti sono:\n{df.groupby("prodotto")["incasso"].sum().reset_index()["prodotto"].head(n)}")
+
+top_n_prodotti(3)
